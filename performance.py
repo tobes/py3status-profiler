@@ -29,7 +29,7 @@ BASE_COMMAND = '{root}/__init__.py {split} -c {config} -i {module_dir} -l {log}'
 
 PROFILERS = {
     'none': '{python} {cmd}',
-    'cprofile': '{python} -m cProfile {cmd}',
+    'cprofile': '{python} -m cProfile -o {output} {cmd}',
     'pprofile': 'pprofile --out {output} {cmd}',
     'vmprof': '{python} -m vmprof -o {output} {cmd}',
 }
