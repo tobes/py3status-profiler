@@ -54,7 +54,7 @@ def profile(options):
 
     module_dir = os.path.join(root, 'modules')
 
-    if options.profiler == 'none':
+    if options.profiler in ['none', 'cprofile']:
         split = ''
     else:
         split = '--'
