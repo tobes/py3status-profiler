@@ -99,7 +99,7 @@ def profile(options):
         # start process and pass to psutil to get timings
         p = subprocess.Popen(shlex.split(cmd),
                              stdout=fnull,
-                             stderr=subprocess.STDOUT)
+                             stderr=subprocess.PIPE)
         if psutil:
             ps = psutil.Process(p.pid)
             format = FORMAT
@@ -153,7 +153,11 @@ def profile(options):
             sys.__stdout__.flush()
 
             # check if we are done
-            if t_int >= run_duration or p.poll():
+            if t_int >= run_duration:
+                break
+            if p.poll():
+                print('An error occured')
+                print(p.stderr.read())
                 break
 
             # take things easy
