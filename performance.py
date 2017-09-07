@@ -214,7 +214,7 @@ def main():
         action="store",
         dest="profiler",
         type=str,
-        choices=['none', 'cprofile', 'pprofile', 'vmprof'],
+        choices=PROFILERS.keys(),
         default='none',
         help="type of profiler"
     )
