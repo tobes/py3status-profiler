@@ -30,6 +30,7 @@ BASE_COMMAND = '{root}/__init__.py {split} -c {config} -i {module_dir} -l {log}'
 PROFILERS = {
     'none': '{python} {cmd}',
     'cprofile': '{python} -m cProfile -o {output} {cmd}',
+    'yappi': '{python} -m  yappi_profiler {output} {cmd}',
     'pprofile': 'pprofile --out {output} {cmd}',
     'vmprof': '{python} -m vmprof -o {output} {cmd}',
 }
@@ -54,7 +55,7 @@ def profile(options):
 
     module_dir = os.path.join(root, 'modules')
 
-    if options.profiler in ['none', 'cprofile']:
+    if options.profiler in ['none', 'cprofile', 'yappi']:
         split = ''
     else:
         split = '--'
